@@ -1,9 +1,13 @@
 package main;
 
 import main.Commands.CommandHandler;
+import main.Mode.ChessPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
+import java.util.ArrayList;
 
 public class MCAutoChess extends JavaPlugin {
 
@@ -14,6 +18,7 @@ public class MCAutoChess extends JavaPlugin {
     @Override
     public void onEnable() {
         System.out.println(this.getDescription().getFullName() + " " + this.getDescription().getVersion() + " enabled!");
+        queue = new ArrayList<Player>();
         registerListener();
     }
 
@@ -34,7 +39,8 @@ public class MCAutoChess extends JavaPlugin {
 //        this.reloadConfig();
     }
 
-
+    public ArrayList<Player> queue;
+    public ArrayList<ChessPlayer> chessplayers;
 
 
     public static int STATUS_NOT_RUNNING = 0;

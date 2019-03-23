@@ -7,6 +7,6 @@ main: main.MCAutoChess
 api-version: 1.13
 
 commands:
-  ac:
+  mcac:
     description: main-command of this plugin
 usage: /<command> <args1> <args2>
