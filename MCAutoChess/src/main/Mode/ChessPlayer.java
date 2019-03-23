@@ -13,6 +13,7 @@ public class ChessPlayer {
     private int money;
     private int xp;
     private int level;
+    private int health;
 
     public ChessPlayer(Player p, int playernumber) {
         this(p, playernumber, null);
@@ -25,6 +26,7 @@ public class ChessPlayer {
         this.money = 1;
         this.xp = 0;
         this.level = 1;
+        this.health = 100;
         refreshPlayerInformation();
     }
 
@@ -52,21 +54,33 @@ public class ChessPlayer {
         return level;
     }
 
+    public int getHealth() {
+        return health;
+    }
+
     public void setSpawn(Location spawn) {
         this.spawn = spawn;
     }
 
     public void setXp(int xp) {
         this.xp = xp;
+        refreshPlayerInformation();
     }
 
     public void setMoney(int money) {
         this.money = money;
+        refreshPlayerInformation();
+    }
+
+    public void takeDamage(int amount){
+        this.health = this.health - amount;
+        refreshPlayerInformation();
     }
 
     public void addXp(int amount) {
         this.xp = this.xp + amount;
         refreshLevel();
+        refreshPlayerInformation();
     }
 
     public void addMoney(int amount) {
@@ -110,7 +124,16 @@ public class ChessPlayer {
     public void refreshPlayerInformation(){
         SpecialItemsGenerator sigen = new SpecialItemsGenerator();
 
-        this.p.getInventory().setItem(44,new ItemStack(Material.DIAMOND,this.money));
+        this.p.getInventory().setItem(0,sigen.getShopItem());
+        this.p.getInventory().setItem(1,sigen.getBuyXPItem());
+        this.p.getInventory().setItem(7,sigen.getMoneyItem(this));
+        this.p.getInventory().setItem(8,sigen.getHealthItem(this));
+        for(int i = 17; i <= 35 ; i++){
+            this.p.getInventory().setItem(i,sigen.getLockedItem());
+        }
+        for(int i = 2; i <= 6 ; i++){
+            this.p.getInventory().setItem(i,sigen.getLockedItem());
+        }
         this.p.updateInventory();
         this.p.setLevel(this.level);
     }

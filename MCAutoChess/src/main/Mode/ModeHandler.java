@@ -56,6 +56,7 @@ public class ModeHandler {
 
         for(ChessPlayer cp : plugin.chessplayers){
             cp.getPlayer().teleport(cp.getSpawn());
+            cp.getPlayer().getInventory().clear();
             cp.refreshPlayerInformation();
         }
     }

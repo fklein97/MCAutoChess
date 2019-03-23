@@ -1,6 +1,7 @@
 package main;
 
 import main.Commands.CommandHandler;
+import main.Listeners.WorldListener;
 import main.Mode.ChessPlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
@@ -11,8 +12,9 @@ import java.util.ArrayList;
 
 public class MCAutoChess extends JavaPlugin {
 
+    WorldListener wl;
     private void registerListener() {
-
+        wl = new WorldListener(this);
     }
 
     @Override
