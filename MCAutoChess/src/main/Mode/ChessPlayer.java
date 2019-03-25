@@ -54,6 +54,57 @@ public class ChessPlayer {
         return level;
     }
 
+    public float getLevelPercentage(){
+        float percentage;
+        float level_xp = 0;
+        float needed_xp = 1;
+
+
+        if(this.level == 1){
+            level_xp = this.xp - 0;
+            needed_xp = 1;
+        }
+        else if(this.level == 2){
+            level_xp = this.xp - 1;
+            needed_xp = 1;
+        }
+        else if(this.level == 3){
+            level_xp = this.xp - 2;
+            needed_xp = 2;
+        }
+        else if(this.level == 4){
+            level_xp = this.xp - 4;
+            needed_xp = 4;
+        }
+        else if(this.level == 5){
+            level_xp = this.xp - 8;
+            needed_xp = 8;
+        }
+        else if(this.level == 6){
+            level_xp = this.xp - 16;
+            needed_xp = 16;
+        }
+        else if(this.level == 7){
+            level_xp = this.xp - 32;
+            needed_xp = 24;
+        }
+        else if(this.level == 8){
+            level_xp = this.xp - 56;
+            needed_xp = 32;
+        }
+        else if(this.level == 9){
+            level_xp = this.xp - 88;
+            needed_xp = 40;
+        }
+        else if(this.level == 10){
+            level_xp = 0;
+            needed_xp = 100;
+        }
+
+        percentage = level_xp/needed_xp*100;
+        return percentage;
+    }
+
     public int getHealth() {
         return health;
     }
@@ -86,6 +137,13 @@ public class ChessPlayer {
     public void addMoney(int amount) {
         this.money = this.money + money;
         refreshPlayerInformation();
+    }
+
+    public void buyXP(){
+        if(money >= 5){
+            money = money - 5;
+            xp = xp + 4;
+        }
     }
 
     public void refreshLevel(){
@@ -124,17 +182,19 @@ public class ChessPlayer {
     public void refreshPlayerInformation(){
         SpecialItemsGenerator sigen = new SpecialItemsGenerator();
 
-        this.p.getInventory().setItem(0,sigen.getShopItem());
-        this.p.getInventory().setItem(1,sigen.getBuyXPItem());
+        this.p.getInventory().setItem(0,sigen.getMovePiecesItem());
+        this.p.getInventory().setItem(1,sigen.getShopItem());
+        this.p.getInventory().setItem(2,sigen.getBuyXPItem());
         this.p.getInventory().setItem(7,sigen.getMoneyItem(this));
         this.p.getInventory().setItem(8,sigen.getHealthItem(this));
         for(int i = 17; i <= 35 ; i++){
             this.p.getInventory().setItem(i,sigen.getLockedItem());
         }
-        for(int i = 2; i <= 6 ; i++){
+        for(int i = 3; i <= 6 ; i++){
             this.p.getInventory().setItem(i,sigen.getLockedItem());
         }
         this.p.updateInventory();
         this.p.setLevel(this.level);
+        this.p.setExp(getLevelPercentage());
     }
 }

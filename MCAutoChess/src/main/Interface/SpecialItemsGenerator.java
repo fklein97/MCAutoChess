@@ -5,12 +5,18 @@ import main.Mode.ChessPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
+import org.bukkit.map.MapCanvas;
+import org.bukkit.map.MapRenderer;
+import org.bukkit.map.MapView;
 
+import javax.imageio.ImageIO;
+import java.io.IOException;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class SpecialItemsGenerator {
 
@@ -66,5 +72,13 @@ public class SpecialItemsGenerator {
         buyXP_meta.setDisplayName(ChatColor.AQUA + "[Right Click] Buy 4XP for 5Gold");
         buyXP.setItemMeta(buyXP_meta);
         return buyXP;
+    }
+
+    public ItemStack getMovePiecesItem(){
+        ItemStack movePieces = (new ItemStack(Material.MAP,1));
+        ItemMeta movePieces_meta = movePieces.getItemMeta();
+        movePieces_meta.setDisplayName(ChatColor.AQUA + "[Right Click] Move your Chess Pieces");
+        movePieces.setItemMeta(movePieces_meta);
+        return movePieces;
     }
 }
