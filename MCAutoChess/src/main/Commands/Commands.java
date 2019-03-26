@@ -25,4 +25,9 @@ public class Commands {
         ModeHandler modeHandler = new ModeHandler(plugin);
         modeHandler.startGame();
     }
+
+    public static void buildmode(MCAutoChess plugin){
+        plugin.toggleBuildmode();
+        plugin.getServer().broadcastMessage("BuildMode: " + plugin.getBuilmode());
+    }
 }

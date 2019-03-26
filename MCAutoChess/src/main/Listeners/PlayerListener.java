@@ -5,6 +5,8 @@ import main.Mode.ChessPlayer;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
+import org.bukkit.event.block.BlockBreakEvent;
+import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 
 public class PlayerListener implements Listener {
@@ -34,6 +36,36 @@ public class PlayerListener implements Listener {
                         event.setCancelled(true);
                     }
                 }
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockPlace(BlockPlaceEvent event){
+        if(event.getPlayer() != null){
+            for(ChessPlayer cp : plugin.chessplayers){
+                if(cp.getPlayer() == event.getPlayer()){
+                    event.setCancelled(true);
+                    break;
+                }
+            }
+            if(!plugin.getBuilmode()){
+                event.setCancelled(true);
+            }
+        }
+    }
+
+    @EventHandler
+    public void onBlockBreak(BlockBreakEvent event){
+        if(event.getPlayer() != null){
+            for(ChessPlayer cp : plugin.chessplayers){
+                if(cp.getPlayer() == event.getPlayer()){
+                    event.setCancelled(true);
+                    break;
+                }
+            }
+            if(!plugin.getBuilmode()){
+                event.setCancelled(true);
             }
         }
     }

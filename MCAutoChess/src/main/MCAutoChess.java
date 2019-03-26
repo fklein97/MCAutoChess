@@ -1,6 +1,7 @@
 package main;
 
 import main.Commands.CommandHandler;
+import main.Listeners.PlayerListener;
 import main.Listeners.WorldListener;
 import main.Mode.ChessPlayer;
 import org.bukkit.command.Command;
@@ -13,8 +14,10 @@ import java.util.ArrayList;
 public class MCAutoChess extends JavaPlugin {
 
     WorldListener wl;
+    PlayerListener pl;
     private void registerListener() {
         wl = new WorldListener(this);
+        pl = new PlayerListener(this);
     }
 
     @Override
@@ -49,6 +52,21 @@ public class MCAutoChess extends JavaPlugin {
     public static int STATUS_RUNNING = 1;
 
     private int status = STATUS_NOT_RUNNING;
+
+    private boolean buildmode = false;
+
+    public void toggleBuildmode(){
+        if(buildmode){
+            buildmode = false;
+        }
+        else{
+            buildmode = true;
+        }
+    }
+
+    public boolean getBuilmode(){
+        return buildmode;
+    }
 
     public int getStatus(){
         return status;

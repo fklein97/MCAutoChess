@@ -34,6 +34,9 @@ public class CommandHandler {
                 else if(args[0].equals("start")){
                     Commands.start(p, plugin);
                 }
+                else if(args[0].equals("buildmode")){
+                    Commands.buildmode(plugin);
+                }
             }
             else if (args.length == 2) {
 
