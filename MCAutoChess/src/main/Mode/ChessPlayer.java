@@ -101,7 +101,7 @@ public class ChessPlayer {
             needed_xp = 100;
         }
 
-        percentage = level_xp/needed_xp*100;
+        percentage = level_xp/needed_xp;
         return percentage;
     }
 
@@ -135,7 +135,7 @@ public class ChessPlayer {
     }
 
     public void addMoney(int amount) {
-        this.money = this.money + money;
+        this.money = this.money + amount;
         refreshPlayerInformation();
     }
 
@@ -144,6 +144,8 @@ public class ChessPlayer {
             money = money - 5;
             xp = xp + 4;
         }
+        refreshLevel();
+        refreshPlayerInformation();
     }
 
     public void refreshLevel(){

@@ -2,6 +2,7 @@ package main.Listeners;
 
 import main.MCAutoChess;
 import main.Mode.ChessPlayer;
+import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -20,7 +21,7 @@ public class PlayerListener implements Listener {
 
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent event){
-        if(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName().startsWith("[Right Click]")){
+        if(event.getPlayer().getInventory().getItemInMainHand().getItemMeta().getDisplayName().startsWith(ChatColor.AQUA + "[Right Click]")){
             for(ChessPlayer cp : plugin.chessplayers){
                 if(cp.getPlayer() == event.getPlayer()){
                     if(event.getPlayer().getInventory().getItemInMainHand().getType() == Material.MAP){
@@ -43,10 +44,12 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onBlockPlace(BlockPlaceEvent event){
         if(event.getPlayer() != null){
-            for(ChessPlayer cp : plugin.chessplayers){
-                if(cp.getPlayer() == event.getPlayer()){
-                    event.setCancelled(true);
-                    break;
+            if(plugin.chessplayers != null) {
+                for (ChessPlayer cp : plugin.chessplayers) {
+                    if (cp.getPlayer() == event.getPlayer()) {
+                        event.setCancelled(true);
+                        break;
+                    }
                 }
             }
             if(!plugin.getBuilmode()){
@@ -58,10 +61,12 @@ public class PlayerListener implements Listener {
     @EventHandler
     public void onBlockBreak(BlockBreakEvent event){
         if(event.getPlayer() != null){
-            for(ChessPlayer cp : plugin.chessplayers){
-                if(cp.getPlayer() == event.getPlayer()){
-                    event.setCancelled(true);
-                    break;
+            if(plugin.chessplayers != null) {
+                for (ChessPlayer cp : plugin.chessplayers) {
+                    if (cp.getPlayer() == event.getPlayer()) {
+                        event.setCancelled(true);
+                        break;
+                    }
                 }
             }
             if(!plugin.getBuilmode()){
