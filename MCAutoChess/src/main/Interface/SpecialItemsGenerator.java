@@ -5,17 +5,10 @@ import main.Mode.ChessPlayer;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.inventory.meta.SkullMeta;
-import org.bukkit.map.MapCanvas;
-import org.bukkit.map.MapRenderer;
-import org.bukkit.map.MapView;
 
-import javax.imageio.ImageIO;
-import java.io.IOException;
-import java.net.MalformedURLException;
 import java.util.ArrayList;
 
 public class SpecialItemsGenerator {
