@@ -1,2 +1,2 @@
-# MCAutoChess
+# MCAutoChess - Minecraft Auto Chess [Bukkit-Plugin]
 ![mcautochess](https://raw.githubusercontent.com/TheFK/MCAutoChess/master/MCAutoChess/src/resources/images/MCAC.png)
