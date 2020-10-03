@@ -1,0 +1,12 @@
+name: MCAutoChess
+version: 0.1.dev
+author: TheFK
+site: http://www.FKProjects.de
+
+main: main.MCAutoChess
+api-version: 1.13
+
+commands:
+  mcac:
+    description: main-command of this plugin
+usage: /<command> <args1> <args2>
